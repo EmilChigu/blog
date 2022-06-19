@@ -1,0 +1,48 @@
+*{
+  font-family: 'Lato', sans-serif;
+}
+h1, h2, h3, h4, h5, h6{
+  font-family: 'Dosis', sans-serif;
+}
+
+/* MAKE VERTICAL LINE BLINK */
+.line {
+  animation: blink 0.5s infinite ease;
+}
+
+a, li, a:link{
+  text-decoration: none;
+ 
+  font-style: none;
+  background-color: transparent;
+}
+
+.nav-link{
+  color: black !important;
+  opacity: 1 !important;
+}
+
+input[type="search" i] {
+     border-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+  font-family: 'Lato', sans-serif;
+}
+
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font-family: 'Lato', sans-serif !important;
+    
+}
+
+
+
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}

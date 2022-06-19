@@ -1,0 +1,136 @@
+{% extends 'base.html' %} {% block content %}
+<div class="px-5 py-5 row g-0 align-items-center bg-white">
+  <div class="col-sm-12 col-md-6 justify-md-center">
+    <h1 class="fw-bold fs-1">Code with Emil</h1>
+    <h3 class="">
+      Let's level up our <span class="typing fw-bold text-warning"></span
+      ><span class="line">|</span> skills together.
+    </h3>
+  </div>
+
+  <div class="col-md-6 d-none d-md-block justify-content-center">
+    <pre class="rounded"><code class="language-js font-monospace">
+    const array = [1,4,5,2,7,2,6]
+    const total = 11
+    const twoSum = (array, total) => {
+        let indexes = [];
+
+        for(let i = 0; i < array.length; i++){
+          for(let j = i + 1; j < array.length; j++){
+            if (array[i] + array[j] === total) {
+            indexes.push(i);
+            indexes.push(j);
+            }
+         }
+        }
+        return indexes;
+    }
+      </code>
+    </pre>
+  </div>
+</div>
+<div class="container my-5 bg-white">
+  <div class="row g-0 py-5">
+    <div class="col-sm-12 col-md-6">
+      <h1>About</h1>
+      <h4 class="">Here is a little something about this blog.</h4>
+      <p>
+        Through out my schooling life, i always understood better the topics
+        that i presented in class to my peers and it dawned to me that i learn
+        better by teaching. So i started this blog in order to teach so i myself
+        can understand better the word of web development and web applications
+        security.
+      </p>
+      <a href="https://www.emilchigu.com" target="_black" class="text-dark"
+        >More about me...</a
+      >
+    </div>
+    <div class="col-sm-12 col-md-6">pic</div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="py-5">
+    <h1 class="text-center mb-5">Latest Posts</h1>
+    <div class="row g-2">
+      <div class="col-md-6 col-sm-12">
+        <div class="bg-white shadow-sm">
+          <img
+            src="{{featured.header_image}}"
+            alt=""
+            width="100%"
+            height="auto"
+          />
+          <div class="p-3">
+            <p class="text-primary fw-bold m-0">{{featured.category}}</p>
+            <h3>{{featured.title}}</h3>
+            <h6>{{featured.description}}</h6>
+            <p>
+              Author: {{featured.author }} Posted:
+              {{featured.date_created|timesince}} ago
+            </p>
+
+            <p>{{featured.body|truncatechars:500|safe}}</p>
+            <div class="row mb-2 fst-italic">
+              <div class="col">
+                <i class="fa-solid fa-eye"></i> {{featured.views}} Views
+              </div>
+              <div class="col">
+                <i class="fa-solid fa-thumbs-up"></i> {{featured.likes}} Likes
+              </div>
+              <div class="col">
+                <i class="fa-solid fa-clock"></i> {{featured.length}}mins read
+              </div>
+            </div>
+            <button class="btn btn-primary">
+              <a class="text-white" href="{%url 'article' featured.id%}"
+                >Read more...</a
+              >
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="row g-3">
+          {% for article in articles %}
+
+          <div class="col-md-6 col-sm-12">
+            <div class="bg-white shadow-sm">
+              <img
+                src="{{article.header_image}}"
+                alt=""
+                width="100%"
+                height="auto"
+              />
+              <div class="p-3">
+                <p class="text-primary fw-bold m-0">{{article.category}}</p>
+                <h5>{{article.title}}</h5>
+                <p>{{article.description|truncatechars:20}}</p>
+                <div class="row mb-2 fst-italic">
+                  <div class="col-6">
+                    <i class="fa-solid fa-eye"></i> {{article.views}} views
+                  </div>
+                  <div class="col-6">
+                    <i class="fa-solid fa-thumbs-up"></i> {{article.likes}}
+                    likes
+                  </div>
+                  <div class="col-6">
+                    <i class="fa-solid fa-clock"></i> {{article.length}}mins
+                    read
+                  </div>
+                </div>
+                <button class="btn btn-primary">
+                  <a class="text-white" href="{%url 'article' article.id%}"
+                    >Read more...</a
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

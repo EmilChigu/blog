@@ -1,0 +1,28 @@
+{%extends 'base.html'%} {% block content %}
+
+<h1>{{article.title}}</h1>
+<p>{{article.body|safe}}</p>
+
+<div class="container">
+  Add a comment
+  <form action="" method="POST">
+    {% csrf_token %}
+    <input type="text" name="body" id="body" placeholder="Enter comment here" />
+    <div><input type="submit" value="Comment" /></div>
+  </form>
+
+  <div>
+    Comments: {% for comment in comments %}
+    <p>
+      {{comment.body}} by: {{comment.author}} ~ posted:
+      {{comment.date_created|timesince}}
+      <span>
+        {% if request.user == comment.author %}
+        <a href="{% url 'delete-comment' comment.id%}">delete</a>
+        {% endif %} {%endfor %}
+      </span>
+    </p>
+  </div>
+</div>
+
+{% endblock content %}
